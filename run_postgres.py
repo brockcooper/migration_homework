@@ -6,11 +6,11 @@ import psycopg2
 # this class to include other basic transform steps that occur frequently
 class RunPostgreSQL():
     def __init__(self, host, dbname, user, password ):
-        self.connection = make_connection(host, dbname, user, password)
+        self.connection = self.make_connection(host, dbname, user, password)
         self.cursor = self.connection.cursor()
 
-    def make_connection(self, host, dbname, user, password)
-        conn_string = create_connection_string(host, dbname, user, password)
+    def make_connection(self, host, dbname, user, password):
+        conn_string = self.create_connection_string(host, dbname, user, password)
         return psycopg2.connect(conn_string)
 
     # Requires Python 3.6 if using f-strings
@@ -19,7 +19,7 @@ class RunPostgreSQL():
 
     def run_sql_file(self, sql_file):
         self.sql_file = sql_file
-        sql_text = get_sql_file_text()
+        sql_text = self.get_sql_file_text()
         return self.cursor.execute(sql_text)
 
     def get_sql_file_text(self):
